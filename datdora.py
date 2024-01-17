@@ -247,6 +247,7 @@ class Datdora:
             )
             return 0
 
+        comic_status = comic_data.get("tinh-trang", "Đang ra")
         if comic_status.lower() == "Hoàn Thành".lower():
             comic_status = "Full"
         else:
