@@ -20,7 +20,7 @@
 
 > tmux new -s update (hoặc all - crawl all)
 
-> cd /root/nettruyen_madara
+> cd /root/nettruyen_datdora
 
 > source /venv/bin/activate
 
@@ -54,7 +54,7 @@
 
 # Trong trường hợp restart VPS cần chạy các lệnh sau sau khi ssh vào VPS
 
-> cd nettruyen_madara
+> cd nettruyen_datdora
 
 > tmux new -s update
 
