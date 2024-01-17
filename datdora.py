@@ -303,10 +303,7 @@ class Datdora:
         chapter_name: str,
         chapter_href: str,
     ):
-        result = CONFIG.CHAPTER_PREFIX.format(
-            comic_name=comic_title,
-            chapter=chapter_name.lower().replace("chapter", "").strip(),
-        )
+        result = ""
         image_numbers = list(chapter_details.keys())
         # sorted(image_numbers, key=lambda x: int(x))
 
@@ -323,12 +320,24 @@ class Datdora:
                 chap_seo=_chapter.get_chapter_slug(chapter_href=chapter_href),
                 image_name=f"{image_number}.jpg",
             )
+            if not saved_image:
+                continue
+
             if CONFIG.SAVE_CHAPTER_IMAGES_TO_S3:
                 img_src = f"{CONFIG.S3_BUCKET_IMAGE_URL_PREFIX}/{saved_image}"
             else:
                 img_src = saved_image.replace(CONFIG.IMAGE_SAVE_PATH, CONFIG.CUSTOM_CDN)
-            result += "\n" + CONFIG.IMAGE_ELEMENT.format(
-                img_src=img_src, img_alt=image_alt
+            result += (
+                CONFIG.IMAGE_ELEMENT.format(img_src=img_src, img_alt=image_alt) + "\n"
+            )
+
+        if result:
+            result = (
+                CONFIG.CHAPTER_PREFIX.format(
+                    comic_name=comic_title,
+                    chapter=chapter_name.lower().replace("chapter", "").strip(),
+                )
+                + result
             )
 
         return result

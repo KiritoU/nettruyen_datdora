@@ -47,6 +47,9 @@ class Crawler:
             chapter_name=chapter_name,
             chapter_href=chapter_href,
         )
+        if not content:
+            return
+
         self._datdora.insert_chapter(
             comic_id=comic_id,
             chapter_name=chapter_name,
