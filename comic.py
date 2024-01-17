@@ -42,11 +42,11 @@ class Comic:
         if not detail_content:
             return ""
 
-        p = detail_content.find("p")
-        if not p:
+        summary = detail_content.find("div", class_="summary")
+        if not summary:
             return ""
 
-        return p.text
+        return summary.text
 
     def get_chapters_href(self, item_detail: BeautifulSoup) -> dict:
         nt_listchapter = item_detail.find("div", {"id": "nt_listchapter"})
