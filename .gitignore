@@ -1,0 +1,11 @@
+test*
+__pycache__
+log
+psy-fix.js
+settings.py
+venv
+.vscode
+json
+Archive.zip
+start.sh
+s3
