@@ -23,9 +23,9 @@ def main():
         last_page = _crawler.get_nettruyen_last_page()
         ic(last_page)
 
-        for i in range(2, last_page + 1):
-            _crawler.crawl_page(page=i)
-            sleep(CONFIG.WAIT_BETWEEN_ALL)
+        # for i in range(2, last_page + 1):
+        #     _crawler.crawl_page(page=i)
+        #     sleep(CONFIG.WAIT_BETWEEN_ALL)
 
     except Exception as e:
         ic(e)

@@ -138,7 +138,7 @@ class Crawler:
         try:
             pagination = soup.find("ul", class_="pagination")
             lis = pagination.find_all("li")
-            last_li = lis[-1]
+            last_li = lis[-2]
             a = last_li.find("a")
             href = a.get("href")
             pattern = re.compile(r"page=(\d+)")
