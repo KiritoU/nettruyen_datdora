@@ -297,6 +297,7 @@ class Datdora:
 
     def get_download_chapter_content(
         self,
+        comic_id: int,
         comic_title: str,
         comic_slug: str,
         chapter_details: dict,
@@ -317,7 +318,9 @@ class Datdora:
             saved_image, _ = helper.save_image(
                 image_url=image_src,
                 comic_seo=comic_slug,
-                chap_seo=_chapter.get_chapter_slug(chapter_href=chapter_href),
+                chap_seo=_chapter.get_chapter_slug(
+                    chapter_href=chapter_href, comic_id=comic_id
+                ),
                 image_name=f"{image_number}.jpg",
             )
             if not saved_image:
@@ -395,7 +398,9 @@ class Datdora:
     ):
         timeupdate = self.get_timeupdate()
 
-        chapter_slug = _chapter.get_chapter_slug(chapter_href=chapter_href)
+        chapter_slug = _chapter.get_chapter_slug(
+            chapter_href=chapter_href, comic_id=comic_id
+        )
 
         data = (
             0,

@@ -41,6 +41,7 @@ class Crawler:
                 f.write(json.dumps(chapter_details, indent=4, ensure_ascii=False))
 
         content = self._datdora.get_download_chapter_content(
+            comic_id=comic_id,
             comic_title=comic_title,
             comic_slug=comic_slug,
             chapter_details=chapter_details,
@@ -84,7 +85,9 @@ class Crawler:
         for chapter_name in chapters_name[::-1]:
             chapter_href = chapters.get(chapter_name)
 
-            chapter_slug = _chapter.get_chapter_slug(chapter_href=chapter_href)
+            chapter_slug = _chapter.get_chapter_slug(
+                chapter_href=chapter_href, comic_id=comic_id
+            )
             if chapter_slug in inserted_chapters_slug:
                 continue
 

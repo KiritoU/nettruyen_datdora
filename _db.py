@@ -16,6 +16,7 @@ class Database:
                 print("[+] Existing connection: Connected")
 
         except:
+            print("[+] Getting new connection...")
             try:
                 self.conn = mysql.connector.connect(
                     user=CONFIG.user,

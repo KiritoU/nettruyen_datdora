@@ -3,7 +3,7 @@ from slugify import slugify
 
 
 class Chapter:
-    def get_chapter_slug(self, chapter_href: str) -> str:
+    def get_chapter_slug(self, chapter_href: str, comic_id: int) -> str:
         chapter_href_splitted = chapter_href.split("/")
 
         if not chapter_href_splitted:
@@ -13,7 +13,7 @@ class Chapter:
         if chapter_slug.isdigit() and len(chapter_href_splitted) > 1:
             chapter_slug = chapter_href_splitted[-2]
 
-        return slugify(chapter_slug)
+        return slugify(f"{chapter_slug}-{comic_id}")
 
     def get_chapter_detail(self, chapter_name: str, soup: BeautifulSoup) -> dict:
         result = {}
