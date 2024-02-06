@@ -12,7 +12,7 @@ from telegram_noti import send_direct_message
 LINK_FILE = "links.json"
 
 
-def write_links(links: list[str], is_append: bool = False):
+def write_links(links: list, is_append: bool = False):
     if is_append:
         existing_links = get_all_links()
         links.extend(existing_links)
@@ -21,7 +21,7 @@ def write_links(links: list[str], is_append: bool = False):
         f.write(json.dumps(links, indent=4))
 
 
-def get_all_links() -> list[str]:
+def get_all_links() -> list:
     try:
         with open(LINK_FILE, "r") as f:
             links = json.loads(f.read())
