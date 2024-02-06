@@ -1,5 +1,23 @@
-from telegram import Update
-from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
+import logging
+
+from telegram import ForceReply, Update
+from telegram.ext import (
+    Application,
+    CommandHandler,
+    ContextTypes,
+    MessageHandler,
+    filters,
+)
+
+# Enable logging
+logging.basicConfig(
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO
+)
+# set higher logging level for httpx to avoid all GET and POST requests being logged
+logging.getLogger("httpx").setLevel(logging.WARNING)
+
+logger = logging.getLogger(__name__)
+
 
 from links import get_all_links, write_links
 from settings import CONFIG
@@ -19,8 +37,17 @@ async def link(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     )
 
 
-app = ApplicationBuilder().token(CONFIG.TELEGRAM_BOT_TOKEN).build()
+def main() -> None:
+    """Start the bot."""
+    # Create the Application and pass it your bot's token.
+    application = Application.builder().token(CONFIG.TELEGRAM_BOT_TOKEN).build()
 
-app.add_handler(CommandHandler("hello", link))
+    # on different commands - answer in Telegram
+    application.add_handler(CommandHandler("link", link))
 
-app.run_polling()
+    # Run the bot until the user presses Ctrl-C
+    application.run_polling(allowed_updates=Update.ALL_TYPES)
+
+
+if __name__ == "__main__":
+    main()
