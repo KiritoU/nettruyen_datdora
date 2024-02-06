@@ -12,6 +12,18 @@
 
 > python crawl_all.py
 
+## Chạy file links phục vụ bot:
+
+> tmux a -t links
+
+> python links.py
+
+## Chạy bot:
+
+> tmux a -t bot
+
+> python bot.py
+
 ## Trong session tmux:
 
 **Khi muốn dừng tool**: ấn tổ hợp phím: Ctrl+B X Y (Bấm và giữ Ctrl sau đó ấn B, sau đó nhả 2 phím và ấn X, sau đó nhả phím và ấn Y)
@@ -63,6 +75,18 @@
 > Bấm và giữ Ctrl sau đó ấn B, sau đó nhả 2 phím và ấn D (dùng để ẩn session tmux - vẫn chạy bình thường)
 
 > tmux new -s all
+
+> source /venv/bin/activate
+
+> Bấm và giữ Ctrl sau đó ấn B, sau đó nhả 2 phím và ấn D
+
+> tmux new -s links
+
+> source /venv/bin/activate
+
+> Bấm và giữ Ctrl sau đó ấn B, sau đó nhả 2 phím và ấn D
+
+> tmux new -s bot
 
 > source /venv/bin/activate
 
