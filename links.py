@@ -54,8 +54,12 @@ def main():
 
         while True:
             link = get_link()
-            ic(link)
-            _crawler.crawl_comic(href=link)
+            if link:
+                try:
+                    ic(link)
+                    _crawler.crawl_comic(href=link)
+                except Exception as e:
+                    ic(e)
             sleep(10)
 
     except Exception as e:
